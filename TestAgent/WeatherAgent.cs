@@ -9,9 +9,9 @@ internal static class WeatherAgent
 {
     public const string AgentName = "WeatherAgent";
 
-    public static AIAgent CreateAgent(AzureOpenAIClient azureOpenAIClient, string deploymentName)
+    public static AIAgent CreateAgent(AzureOpenAIClient azureClient, string deploymentName)
     {
-        return azureOpenAIClient
+        return azureClient
             .GetChatClient(deploymentName)
             .AsAIAgent(name: AgentName, instructions: "You are a friendly assistant. Keep your answers brief.",
             tools: [AIFunctionFactory.Create(WeatherTool.GetWeather)]);
